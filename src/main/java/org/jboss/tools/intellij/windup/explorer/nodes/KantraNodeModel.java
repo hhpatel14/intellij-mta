@@ -9,14 +9,14 @@ import org.jboss.tools.intellij.windup.services.ModelService;
 
 import java.util.*;
 
-public class WindupNodeModel {
+public class KantraNodeModel {
 
     private final ModelService modelService;
     private final VertxService vertxService;
     private final StructureTreeModel treeModel;
     private final List<ConfigurationNode> configurationNodes = new ArrayList<>();
 
-    public WindupNodeModel(ModelService modelService, VertxService vertxService, StructureTreeModel treeModel) {
+    public KantraNodeModel(ModelService modelService, VertxService vertxService, StructureTreeModel treeModel) {
         this.modelService = modelService;
         this.vertxService = vertxService;
         this.treeModel = treeModel;

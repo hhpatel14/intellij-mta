@@ -8,11 +8,7 @@ import com.intellij.openapi.Disposable;
 import com.intellij.openapi.project.Project;
 import com.intellij.ui.tree.StructureTreeModel;
 import org.apache.commons.io.FileUtils;
-import org.jboss.tools.intellij.windup.model.WindupConfiguration;
-import org.jboss.tools.intellij.windup.model.WindupConfiguration.*;
-import org.jboss.tools.intellij.windup.model.WindupModel;
-import org.jboss.tools.intellij.windup.model.WindupModelParser;
-import org.jboss.tools.intellij.windup.model.NameUtil;
+import org.jboss.tools.intellij.windup.model.*;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 
@@ -24,7 +20,7 @@ import java.util.Map;
 
 public class ModelService implements Disposable {
 
-    private WindupModel windupModel;
+    private KantraModel kantraModel;
     private Project project;
     private StructureTreeModel treeModel;
 
@@ -34,8 +30,8 @@ public class ModelService implements Disposable {
         this.project = project;
     }
 
-    public WindupModel getModel() {
-        return this.windupModel;
+    public KantraModel getModel() {
+        return this.kantraModel;
     }
 
     public Project getProject() {
@@ -51,31 +47,31 @@ public class ModelService implements Disposable {
     }
 
     public void forceReload() {
-        this.windupModel = WindupModelParser.parseModel(STATE_LOCATION, this);
+        this.kantraModel = KantraModelParser.parseModel(STATE_LOCATION, this);
     }
 
-    public WindupModel loadModel() {
-        if (this.windupModel != null) {
-            return this.windupModel;
+    public KantraModel loadModel() {
+        if (this.kantraModel != null) {
+            return this.kantraModel;
         }
-        this.windupModel = WindupModelParser.parseModel(STATE_LOCATION, this);
-        if (this.windupModel.getConfigurations().isEmpty()) {
+        this.kantraModel = KantraModelParser.parseModel(STATE_LOCATION, this);
+        if (this.kantraModel.getConfigurations().isEmpty()) {
             // Create default configuration
             this.createConfiguration();
         }
-        return this.windupModel;
+        return this.kantraModel;
     }
 
-    public boolean deleteConfiguration(WindupConfiguration configuration) {
-        return this.windupModel.deleteConfiguration(configuration);
+    public boolean deleteConfiguration(KantraConfiguration configuration) {
+        return this.kantraModel.deleteConfiguration(configuration);
     }
 
-    public WindupConfiguration createConfiguration() {
-        WindupModel model = this.getModel();
-        WindupConfiguration configuration = new WindupConfiguration();
-        configuration.setId(WindupConfiguration.generateUniqueId());
+    public KantraConfiguration createConfiguration() {
+        KantraModel model = this.getModel();
+        KantraConfiguration configuration = new KantraConfiguration();
+        configuration.setId(KantraConfiguration.generateUniqueId());
         configuration.setName(NameUtil.generateUniqueConfigurationName(model));
-        configuration.getOptions().put("cli", this.computeWindupCliLocation());
+        configuration.getOptions().put("cli", this.computeKantraCliLocation());
         configuration.getOptions().put("output", ModelService.getConfigurationOutputLocation(configuration));
         configuration.getOptions().put("sourceMode", "true");
         configuration.getOptions().put("legacyReports", "true");
@@ -93,7 +89,7 @@ public class ModelService implements Disposable {
         JSONObject model = new JSONObject();
         JSONArray configurations = new JSONArray();
         model.put("configurations", configurations);
-        for (WindupConfiguration configuration : this.windupModel.getConfigurations()) {
+        for (KantraConfiguration configuration : this.kantraModel.getConfigurations()) {
             JSONObject configObject = new JSONObject();
             configurations.add(configObject);
             configObject.put("id", configuration.getId());
@@ -110,30 +106,6 @@ public class ModelService implements Disposable {
                 }
                 else {
                     options.put(entry.getKey(), entry.getValue());
-                }
-            }
-            AnalysisResultsSummary resultsSummary = configuration.getSummary();
-            if (resultsSummary != null) {
-                JSONObject summary = new JSONObject();
-                configObject.put("summary", summary);
-                String skippedReports = (String) configuration.getOptions().get("skipReports");
-                boolean skipReports = skippedReports != null ? Boolean.valueOf(skippedReports) : false;
-                summary.put("skipReports", skipReports);
-                summary.put("outputLocation", resultsSummary.outputLocation);
-                summary.put("executedTimestamp", resultsSummary.executedTimestamp);
-                summary.put("executable", resultsSummary.executable);
-                summary.put("hintCount", resultsSummary.hints.size());
-                summary.put("classificationCount", resultsSummary.classifications.size());
-                List<Issue> issues = Lists.newArrayList(resultsSummary.hints);
-                issues.addAll(resultsSummary.classifications);
-                JSONArray completeIssues = new JSONArray();
-                summary.put("completeIssues", completeIssues);
-                JSONArray deletedIssues = new JSONArray();
-                summary.put("deletedIssues", deletedIssues);
-                for (Issue issue : issues) {
-                    if (issue.complete) {
-                        completeIssues.add(issue.id);
-                    }
                 }
             }
         }
@@ -160,7 +132,7 @@ public class ModelService implements Disposable {
         }
     }
 
-    public static void deleteOutput(WindupConfiguration configuration) {
+    public static void deleteOutput(KantraConfiguration configuration) {
         String output = (String)configuration.getOptions().get("output");
         if (output != null && !"".equals(output)) {
             try {
@@ -185,11 +157,11 @@ public class ModelService implements Disposable {
                 + File.separator + "model.json";
     }
 
-    public String computeWindupCliLocation() {
+    public String computeKantraCliLocation() {
         if (this.getModel() == null || this.getModel().getConfigurations().isEmpty()) {
             return "";
         }
-        WindupConfiguration configuration = Lists.reverse(this.getModel().getConfigurations()).stream().filter(config -> {
+        KantraConfiguration configuration = Lists.reverse(this.getModel().getConfigurations()).stream().filter(config -> {
             String cli = (String) config.getOptions().get("cli");
             return cli != null && !"".equals(cli);
         }).findFirst().orElse(null);
@@ -201,12 +173,12 @@ public class ModelService implements Disposable {
 
     public static String getDefaultOutputLocation() {
         return FileUtils.getUserDirectoryPath()
-                + File.separator + ".windup"
+                + File.separator + ".kantra"
                 + File.separator +  "tooling"
                 + File.separator + "intellij";
     }
 
-    public static String getConfigurationOutputLocation(WindupConfiguration configuration) {
+    public static String getConfigurationOutputLocation(KantraConfiguration configuration) {
         return ModelService.getDefaultOutputLocation()
                 + File.separator + configuration.getId();
     }

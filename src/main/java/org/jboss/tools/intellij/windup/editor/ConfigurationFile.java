@@ -6,18 +6,18 @@ package org.jboss.tools.intellij.windup.editor;
 import com.intellij.openapi.vfs.VirtualFile;
 import com.intellij.testFramework.LightVirtualFile;
 import org.jboss.tools.intellij.windup.editor.server.VertxService;
-import org.jboss.tools.intellij.windup.model.WindupConfiguration;
+import org.jboss.tools.intellij.windup.model.KantraConfiguration;
 import org.jboss.tools.intellij.windup.services.ModelService;
 import org.jetbrains.annotations.NotNull;
 
 public class ConfigurationFile extends LightVirtualFile {
 
-    private WindupConfiguration configuration;
+    private KantraConfiguration configuration;
     private VertxService vertxService;
     private ModelService modelService;
 
     public ConfigurationFile(
-            WindupConfiguration configuration,
+            KantraConfiguration configuration,
             VertxService vertxService,
             ModelService modelService
     ) {
@@ -70,7 +70,7 @@ public class ConfigurationFile extends LightVirtualFile {
         return configuration.getId().hashCode();
     }
 
-    public WindupConfiguration getConfiguration() {
+    public KantraConfiguration getConfiguration() {
         return this.configuration;
     }
 

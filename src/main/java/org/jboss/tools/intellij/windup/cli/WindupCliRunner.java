@@ -6,15 +6,12 @@ package org.jboss.tools.intellij.windup.cli;
 import com.google.common.collect.Maps;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
-import com.google.gson.JsonSyntaxException;
 import org.apache.commons.exec.*;
-import org.jboss.tools.intellij.windup.model.WindupConfiguration;
+import org.jboss.tools.intellij.windup.model.KantraConfiguration;
 
 import java.io.IOException;
 import java.util.List;
 import java.util.Map;
-
-import static org.jboss.tools.intellij.windup.cli.ProgressMonitor.PROGRESS;
 
 public class WindupCliRunner {
 
@@ -26,18 +23,20 @@ public class WindupCliRunner {
         default void onProcessComplete(int exitValue) {}
     }
 
-    public static void run(WindupConfiguration configuration,
+    public static void run(KantraConfiguration configuration,
                            ProgressMonitor progressMonitor,
                            CliListener listener) {
         String javaHome = "";
         String windupCli = (String)configuration.getOptions().get("cli");
+        System.out.println("$$$$$$$$$$$$  -->     "+windupCli+"   <-- $$$$$$$");
         List<String> params = WindupCliParamBuilder.buildParams(configuration, windupCli);
+        System.out.println("$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$ at 35");
         WindupCliRunner.executeAnalysis(windupCli, javaHome, params, progressMonitor, listener);
     }
 
     private static void executeAnalysis(String cli, String javaHome, List<String> params, ProgressMonitor progressMonitor, CliListener listener) {
         System.out.println("execute CLI");
-        CommandLine cmdLine = CommandLine.parse(cli);
+        CommandLine cmdLine = CommandLine.parse("kantra analyze --input=/Users/hiteshwaripatel/example-applications/example-1 --output=/Users/hiteshwaripatel/output-kantra/cloud-readiness --target=cloud-readiness");
         Map<String, String> env = Maps.newHashMap();
         for (Map.Entry<String, String> entry : System.getenv().entrySet()) {
             env.put(entry.getKey(), entry.getValue());

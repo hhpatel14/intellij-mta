@@ -10,8 +10,6 @@ import com.intellij.openapi.wm.ToolWindowAnchor;
 import com.intellij.openapi.wm.ToolWindowManager;
 import com.intellij.ui.components.JBScrollPane;
 
-import static org.jboss.tools.intellij.windup.model.WindupConfiguration.*;
-
 import javax.swing.*;
 import java.awt.*;
 

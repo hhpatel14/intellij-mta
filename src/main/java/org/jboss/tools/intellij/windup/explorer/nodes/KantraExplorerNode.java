@@ -7,16 +7,16 @@ import com.intellij.ide.util.treeView.AbstractTreeNode;
 import com.intellij.openapi.project.Project;
 import com.intellij.ui.tree.StructureTreeModel;
 import org.jboss.tools.intellij.windup.explorer.WindupTreeCellRenderer;
-import org.jboss.tools.intellij.windup.model.WindupConfiguration;
+import org.jboss.tools.intellij.windup.model.KantraConfiguration;
 
 import javax.swing.tree.DefaultMutableTreeNode;
 import javax.swing.tree.TreePath;
 
-public abstract class WindupExplorerNode<T> extends AbstractTreeNode<T> {
+public abstract class KantraExplorerNode<T> extends AbstractTreeNode<T> {
 
-    protected WindupConfiguration.AnalysisResultsSummary summary;
+    protected KantraConfiguration.AnalysisResultsSummary summary;
 
-    protected WindupExplorerNode(T value, WindupConfiguration.AnalysisResultsSummary summary) {
+    protected KantraExplorerNode(T value, KantraConfiguration.AnalysisResultsSummary summary) {
         super(null, value);
         this.summary = summary;
     }
@@ -31,7 +31,7 @@ public abstract class WindupExplorerNode<T> extends AbstractTreeNode<T> {
 
     }
 
-    public WindupConfiguration.AnalysisResultsSummary getSummary() {
+    public KantraConfiguration.AnalysisResultsSummary getSummary() {
         return this.summary;
     }
 }

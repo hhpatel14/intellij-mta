@@ -10,17 +10,16 @@ import com.intellij.ide.projectView.PresentationData;
 import com.intellij.ide.util.treeView.AbstractTreeNode;
 import com.intellij.openapi.project.Project;
 import org.jboss.tools.intellij.windup.explorer.dialog.WindupNotifier;
-import org.jboss.tools.intellij.windup.model.WindupConfiguration;
-import org.jboss.tools.intellij.windup.model.WindupConfiguration.*;
+import org.jboss.tools.intellij.windup.model.KantraConfiguration;
 import org.jetbrains.annotations.NotNull;
 
 import java.io.File;
 import java.util.Collection;
 import java.util.List;
 
-public class ReportNode extends WindupExplorerNode<WindupConfiguration> {
+public class ReportNode extends KantraExplorerNode<KantraConfiguration> {
 
-    public ReportNode(WindupConfiguration configuration) {
+    public ReportNode(KantraConfiguration configuration) {
         super(configuration, configuration.getSummary());
     }
 

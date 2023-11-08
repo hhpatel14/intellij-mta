@@ -5,13 +5,10 @@ package org.jboss.tools.intellij.windup.explorer;
 
 import com.intellij.ide.projectView.TreeStructureProvider;
 import com.intellij.ide.util.treeView.AbstractTreeStructureBase;
-import com.intellij.openapi.project.Project;
 import com.intellij.ui.tree.StructureTreeModel;
 import org.jboss.tools.intellij.windup.editor.server.VertxService;
 import org.jboss.tools.intellij.windup.explorer.nodes.WindupExplorerRootNode;
 import org.jboss.tools.intellij.windup.explorer.nodes.WindupNodeModel;
-import org.jboss.tools.intellij.windup.model.WindupModel;
-import org.jboss.tools.intellij.windup.services.ModelService;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.List;

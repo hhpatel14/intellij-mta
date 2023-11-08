@@ -6,8 +6,6 @@ package org.jboss.tools.intellij.windup.explorer;
 import com.intellij.ide.util.treeView.NodeRenderer;
 import com.intellij.ui.tree.StructureTreeModel;
 import org.jboss.tools.intellij.windup.editor.server.VertxService;
-import org.jboss.tools.intellij.windup.model.WindupModel;
-import org.jboss.tools.intellij.windup.services.ModelService;
 
 public class WindupTreeCellRenderer extends NodeRenderer {
 

@@ -5,9 +5,9 @@ package org.jboss.tools.intellij.windup.explorer.nodes;
 
 import java.io.File;
 
-import static org.jboss.tools.intellij.windup.model.WindupConfiguration.*;
+import static org.jboss.tools.intellij.windup.model.KantraConfiguration.*;
 
-public abstract class ResourceNode extends WindupExplorerNode<String> {
+public abstract class ResourceNode extends KantraExplorerNode<String> {
 
     public final File file;
 

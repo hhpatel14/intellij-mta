@@ -9,17 +9,13 @@ import com.intellij.icons.AllIcons;
 import com.intellij.ide.projectView.PresentationData;
 import com.intellij.ide.util.treeView.AbstractTreeNode;
 import com.intellij.openapi.project.Project;
-import com.intellij.openapi.vfs.VirtualFile;
-import org.apache.commons.io.comparator.NameFileComparator;
-import org.jboss.tools.intellij.windup.model.WindupConfiguration.*;
+import org.jboss.tools.intellij.windup.model.KantraConfiguration.*;
 import org.jboss.tools.intellij.windup.services.ModelService;
 import org.jetbrains.annotations.NotNull;
-import org.jetbrains.annotations.Nullable;
 
 import java.util.*;
-import java.util.stream.Collectors;
 
-public class AnalysisResultsNode extends WindupExplorerNode<AnalysisResultsSummary> {
+public class AnalysisResultsNode extends KantraExplorerNode<AnalysisResultsSummary> {
 
     private Map<String, ? extends AbstractTreeNode<?>> resourceNodes = Maps.newHashMap();
 

@@ -7,11 +7,7 @@ import com.intellij.openapi.actionSystem.AnActionEvent;
 import com.intellij.ui.treeStructure.Tree;
 import org.jboss.tools.intellij.windup.explorer.WindupTreeCellRenderer;
 import org.jboss.tools.intellij.windup.explorer.nodes.ConfigurationNode;
-import org.jboss.tools.intellij.windup.explorer.nodes.WindupExplorerNode;
 import org.jboss.tools.intellij.windup.model.WindupConfiguration;
-import org.jboss.tools.intellij.windup.model.WindupModel;
-import org.jboss.tools.intellij.windup.model.NameUtil;
-import org.jboss.tools.intellij.windup.services.ModelService;
 
 import javax.swing.tree.TreePath;
 

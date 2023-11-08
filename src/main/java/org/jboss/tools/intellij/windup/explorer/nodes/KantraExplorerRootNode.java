@@ -5,14 +5,13 @@ package org.jboss.tools.intellij.windup.explorer.nodes;
 
 import com.intellij.ide.projectView.PresentationData;
 import com.intellij.ide.util.treeView.AbstractTreeNode;
-import org.jboss.tools.intellij.windup.model.WindupModel;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.Collection;
 
-public class WindupExplorerRootNode extends WindupExplorerNode<WindupNodeModel> {
+public class KantraExplorerRootNode extends KantraExplorerNode<KantraNodeModel> {
 
-    public WindupExplorerRootNode(WindupNodeModel nodeModel) {
+    public KantraExplorerRootNode(KantraNodeModel nodeModel) {
         super(nodeModel, null);
     }
 

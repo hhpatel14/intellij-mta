@@ -44,8 +44,10 @@ public class RunAnalysisCommandHandler {
         this.project = project;
         this.console = console;
         commandLine = new GeneralCommandLine();
-        commandLine.setExePath(executable);
+        System.out.println("This is the executable --> " + executable );
+        commandLine.setExePath("kantra");
         commandLine.addParameters(params);
+
         this.progressMonitor = new ProgressMonitor(this.createProgressListener(onComplete));
     }
 
@@ -70,10 +72,14 @@ public class RunAnalysisCommandHandler {
         manager.run(new Task.Backgroundable(this.project, "Migration Toolkit for Runtimes", true) {
             public void run(final ProgressIndicator indicator) {
                 try {
+                    System.out.println("$$$$$$$$$$$$$$$$$$ at First ");
                     progressIndicator = indicator;
                     startTime = System.currentTimeMillis();
+                    System.out.println("$$$$$$$$$$$$$$$$$$ This is after start time ");
                     process = commandLine.createProcess();
+                    System.out.println("$$$$$$$$$$$$$$$$$$ This is after process  ");
                     handler = new WindupCliProcessHandler(process, commandLine, progressMonitor, progressIndicator, console);
+                    System.out.println("$$$$$$$$$$$$$$$$$$  CommandLine ---> " + commandLine.toString());
                     console.init(project, handler, commandLine.toString());
                     handler.startNotify();
                     progressIndicator.setText("Starting migration toolit...");

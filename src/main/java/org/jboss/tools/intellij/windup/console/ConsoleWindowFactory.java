@@ -20,7 +20,7 @@ import com.intellij.openapi.wm.ToolWindowFactory;
 import com.intellij.openapi.wm.ToolWindowManager;
 import com.intellij.ui.content.Content;
 import com.intellij.ui.content.ContentManager;
-import org.jboss.tools.intellij.windup.model.WindupConfiguration;
+import org.jboss.tools.intellij.windup.model.KantraConfiguration;
 import org.jetbrains.annotations.NotNull;
 
 public class ConsoleWindowFactory implements ToolWindowFactory, DumbAware {
@@ -30,7 +30,7 @@ public class ConsoleWindowFactory implements ToolWindowFactory, DumbAware {
 
     public static Project project;
 
-    public static void updateToolWindowTitle(WindupConfiguration configuration) {
+    public static void updateToolWindowTitle(KantraConfiguration configuration) {
         ToolWindow toolWindow = ToolWindowManager.getInstance(ConsoleWindowFactory.project).getToolWindow(TOOL_WINDOW_ID);
         String name = configuration.getName();
         name = (name == null || "".equals(name)) ? "unknown" : name;

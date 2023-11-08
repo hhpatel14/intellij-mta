@@ -14,16 +14,19 @@ public class NameUtil {
 
     private static Pattern namePattern = Pattern.compile("([a-zA-Z_]*)([0-9]+)");
 
-    public static String generateUniqueConfigurationName(WindupModel model) {
+    public static String generateUniqueConfigurationName(KantraModel model) {
         Set<String> existingNames = getAllExistingNames(model);
         String nextName = generateName(CONFIGURATION_ELEMENT_PREFIX, existingNames);
         return nextName;
     }
 
-    private static Set<String> getAllExistingNames(WindupModel model) {
+
+
+    private static Set<String> getAllExistingNames(KantraModel model) {
         Set<String> nameSet = model.getConfigurations().stream().map(e -> e.getName()).collect(Collectors.toSet());
         return nameSet;
     }
+
 
     public static String generateName(String candidate, Set<String> names) {
         Matcher matcher = namePattern.matcher(candidate);

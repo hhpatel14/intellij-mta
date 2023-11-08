@@ -8,6 +8,7 @@ import com.intellij.ui.tree.StructureTreeModel;
 import org.jboss.tools.intellij.windup.cli.*;
 import org.jboss.tools.intellij.windup.explorer.dialog.WindupNotifier;
 import org.jboss.tools.intellij.windup.explorer.nodes.ConfigurationNode;
+import org.jboss.tools.intellij.windup.model.KantraConfiguration;
 import org.jboss.tools.intellij.windup.model.WindupConfiguration;
 import org.jboss.tools.intellij.windup.services.ModelService;
 
@@ -30,7 +31,7 @@ public class RunConfigurationAction extends StructureTreeAction {
     @Override
     public void actionPerformed(AnActionEvent anActionEvent, TreePath path, Object selected) {
         ConfigurationNode node = (ConfigurationNode)super.adjust(selected);
-        WindupConfiguration configuration = node.getValue();
+        KantraConfiguration configuration = node.getValue();
         ModelService modelService = node.getModelService();
         if (this.validateConfiguration(configuration)) {
             String executable = (String)configuration.getOptions().get("cli");
@@ -68,18 +69,19 @@ public class RunConfigurationAction extends StructureTreeAction {
         return resolved;
     }
 
-    private void loadAnalysisResults(WindupConfiguration configuration, ModelService modelService, StructureTreeModel treeModel) {
+    private void loadAnalysisResults(KantraConfiguration configuration, ModelService modelService, StructureTreeModel treeModel) {
         RunConfigurationAction.running = false;
-        WindupConfiguration.AnalysisResultsSummary summary = new WindupConfiguration.AnalysisResultsSummary(modelService);
+        KantraConfiguration.AnalysisResultsSummary summary = new KantraConfiguration.AnalysisResultsSummary(modelService);
         summary.outputLocation = (String)configuration.getOptions().get("output");
         configuration.setSummary(summary);
-        WindupResultsParser.loadAndPersistIDs(configuration, summary.outputLocation);
-        WindupResultsParser.parseResults(configuration);
+//        WindupResultsParser.loadAndPersistIDs(configuration, summary.outputLocation);
+//        WindupResultsParser.parseResults(configuration);
+        RulesetParser.parseRulesetForKantraConfig(configuration);
         modelService.saveModel();
         treeModel.invalidate();
     }
 
-    private boolean validateConfiguration(WindupConfiguration configuration) {
+    private boolean validateConfiguration(KantraConfiguration configuration) {
         boolean valid = true;
         String cliLocation = (String)configuration.getOptions().get("cli");
         if (cliLocation == null || "".equals(cliLocation)) {

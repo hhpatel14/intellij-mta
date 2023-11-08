@@ -8,7 +8,7 @@ import com.google.common.collect.Sets;
 import com.intellij.icons.AllIcons;
 import com.intellij.ide.projectView.PresentationData;
 import com.intellij.ide.util.treeView.AbstractTreeNode;
-import org.jboss.tools.intellij.windup.model.WindupConfiguration.*;
+import org.jboss.tools.intellij.windup.model.KantraConfiguration.*;
 import org.jetbrains.annotations.NotNull;
 
 import java.io.File;
@@ -24,8 +24,21 @@ public class FolderNode extends ResourceNode {
     public @NotNull Collection<? extends AbstractTreeNode<?>> getChildren() {
         List<ResourceNode> children = Lists.newArrayList();
         Set<String> resolvedFiles = Sets.newHashSet();
-        for (Issue issue : this.summary.getIssues()) {
-            File childFile = this.findChildFile(issue.file);
+        List<Incident> incidents = Lists.newArrayList();
+
+        if (this.summary.getRulesets() != null ){
+            for (Ruleset ruleset: this.summary.getRulesets()){
+                Map<String,Violation> violations = ruleset.getViolations();
+                if (violations != null ){
+                    for(Violation violation : violations.values()){
+                        incidents.addAll(violation.getIncidents());
+                    }
+                }
+            }
+        }
+
+        for (Incident incident : incidents) {
+            File childFile = this.findChildFile(incident.getUri());
             if (childFile != null && !resolvedFiles.contains(childFile.getAbsolutePath())) {
                 ResourceNode node = childFile.isDirectory() ?
                         new FolderNode(this.summary, childFile.getAbsolutePath()) :

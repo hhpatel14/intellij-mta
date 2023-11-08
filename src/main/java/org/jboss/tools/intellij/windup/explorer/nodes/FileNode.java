@@ -7,7 +7,7 @@ import com.google.common.collect.Lists;
 import com.intellij.icons.AllIcons;
 import com.intellij.ide.projectView.PresentationData;
 import com.intellij.ide.util.treeView.AbstractTreeNode;
-import org.jboss.tools.intellij.windup.model.WindupConfiguration.*;
+import org.jboss.tools.intellij.windup.model.KantraConfiguration.*;
 import org.jetbrains.annotations.NotNull;
 
 import java.io.File;
@@ -17,7 +17,7 @@ import java.util.List;
 public class FileNode extends ResourceNode {
 
     private HintsGroupNode hintsGroupNode;
-    private ClassificationsGroupNode classificationsGroupNode;
+
 
     public FileNode(AnalysisResultsSummary summary, String file) {
         super(summary, file);

@@ -1,0 +1,146 @@
+{
+  "execution-results": {
+    "classifications": {
+      "classification": [
+        {
+          "classification": "Maven POM (pom.xml)",
+          "description": "Maven Project Object Model (POM) File",
+          "effort": 0,
+          "file": "/Users/hiteshwaripatel/example-applications/example-1/pom.xml",
+          "issue-category": {
+            "categoryID": "information",
+            "description": "Additional information found during the analysis.",
+            "name": "Information",
+            "origin": "/Users/hiteshwaripatel/windup-cli-6.3.1.Final/rules/migration-core/core.windup.categories.xml",
+            "priority": 20000
+          },
+          "links": "",
+          "quickfixes": "",
+          "rule-id": "DiscoverMavenProjectsRuleProvider_1"
+        },
+        {
+          "classification": "Java Servlet",
+          "description": "The application uses Java Servlets",
+          "effort": 0,
+          "file": "/Users/hiteshwaripatel/example-applications/example-1/src/main/java/io/konveyor/demo/ordermanagement/OrderManagementAppInitializer.java",
+          "issue-category": {
+            "categoryID": "information",
+            "description": "Additional information found during the analysis.",
+            "name": "Information",
+            "origin": "/Users/hiteshwaripatel/windup-cli-6.3.1.Final/rules/migration-core/core.windup.categories.xml",
+            "priority": 20000
+          },
+          "links": "",
+          "quickfixes": "",
+          "rule-id": "javaee-technology-usage-00120"
+        },
+        {
+          "classification": "Embedded library - Spring Boot Actuator",
+          "description": "The application embeds Spring Boot Actuator.",
+          "effort": 0,
+          "file": "/Users/hiteshwaripatel/example-applications/example-1/pom.xml",
+          "issue-category": {
+            "categoryID": "information",
+            "description": "Additional information found during the analysis.",
+            "name": "Information",
+            "origin": "/Users/hiteshwaripatel/windup-cli-6.3.1.Final/rules/migration-core/core.windup.categories.xml",
+            "priority": 20000
+          },
+          "links": "",
+          "quickfixes": "",
+          "rule-id": "observability-0100"
+        },
+        {
+          "classification": "Embedded framework - Spring MVC",
+          "description": "The application embeds a Spring MVC library.",
+          "effort": 0,
+          "file": "/Users/hiteshwaripatel/example-applications/example-1/pom.xml",
+          "issue-category": {
+            "categoryID": "information",
+            "description": "Additional information found during the analysis.",
+            "name": "Information",
+            "origin": "/Users/hiteshwaripatel/windup-cli-6.3.1.Final/rules/migration-core/core.windup.categories.xml",
+            "priority": 20000
+          },
+          "links": "",
+          "quickfixes": "",
+          "rule-id": "mvc-01220"
+        },
+        {
+          "classification": "Embedded framework - Spring Web",
+          "description": "The application embeds the Spring Web framework.",
+          "effort": 0,
+          "file": "/Users/hiteshwaripatel/example-applications/example-1/pom.xml",
+          "issue-category": {
+            "categoryID": "information",
+            "description": "Additional information found during the analysis.",
+            "name": "Information",
+            "origin": "/Users/hiteshwaripatel/windup-cli-6.3.1.Final/rules/migration-core/core.windup.categories.xml",
+            "priority": 20000
+          },
+          "links": "",
+          "quickfixes": "",
+          "rule-id": "embedded-framework-08400"
+        },
+        {
+          "classification": "Embedded Spring Data JPA",
+          "description": "The application embeds Spring Data JPA",
+          "effort": 0,
+          "file": "/Users/hiteshwaripatel/example-applications/example-1/pom.xml",
+          "issue-category": {
+            "categoryID": "information",
+            "description": "Additional information found during the analysis.",
+            "name": "Information",
+            "origin": "/Users/hiteshwaripatel/windup-cli-6.3.1.Final/rules/migration-core/core.windup.categories.xml",
+            "priority": 20000
+          },
+          "links": "",
+          "quickfixes": "",
+          "rule-id": "database-03100"
+        }
+      ]
+    },
+    "hints": {
+      "hint": {
+        "column": 27,
+        "effort": 1,
+        "file": "/Users/hiteshwaripatel/example-applications/example-1/src/main/resources/persistence.properties",
+        "hint": "**Hard-coded IP: 169.60.225.216**\n\nWhen migrating environments, hard-coded IP addresses may need to be modified or eliminated.",
+        "issue-category": {
+          "categoryID": "cloud-mandatory",
+          "description": "Mandatory items to be reviewed for a successful migration to a cloud environment.",
+          "name": "Cloud Mandatory",
+          "origin": "/Users/hiteshwaripatel/windup-cli-6.3.1.Final/rules/migration-core/core.windup.categories.xml",
+          "priority": 10000
+        },
+        "length": 14,
+        "line-number": 2,
+        "links": "",
+        "quickfixes": "",
+        "rule-id": "DiscoverHardcodedIPAddressRuleProvider",
+        "source-snippit": "169.60.225.216",
+        "title": "Hard-coded IP address"
+      }
+    },
+    "report-links": {
+      "report-link": [
+        {
+          "input-file": "/Users/hiteshwaripatel/example-applications/example-1/src/main/java/io/konveyor/demo/ordermanagement/model/Customer.java",
+          "report-file": "/Users/hiteshwaripatel/.windup/tooling/intellij/00a32fcc-7631-458e-b0c0-47c07ceffedc/reports/Customer_java.html"
+        },
+        {
+          "input-file": "/Users/hiteshwaripatel/example-applications/example-1/src/main/resources/persistence.properties",
+          "report-file": "/Users/hiteshwaripatel/.windup/tooling/intellij/00a32fcc-7631-458e-b0c0-47c07ceffedc/reports/persistence_properties.html"
+        },
+        {
+          "input-file": "/Users/hiteshwaripatel/example-applications/example-1/src/main/java/io/konveyor/demo/ordermanagement/OrderManagementAppInitializer.java",
+          "report-file": "/Users/hiteshwaripatel/.windup/tooling/intellij/00a32fcc-7631-458e-b0c0-47c07ceffedc/reports/OrderManagementAppInitializer_java.html"
+        },
+        {
+          "input-file": "/Users/hiteshwaripatel/example-applications/example-1/pom.xml",
+          "report-file": "/Users/hiteshwaripatel/.windup/tooling/intellij/00a32fcc-7631-458e-b0c0-47c07ceffedc/reports/pom_xml.html"
+        }
+      ]
+    }
+  }
+}

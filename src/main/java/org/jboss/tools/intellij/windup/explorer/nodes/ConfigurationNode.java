@@ -3,7 +3,6 @@
  *--------------------------------------------------------------------------------------------*/
 package org.jboss.tools.intellij.windup.explorer.nodes;
 
-import com.google.common.collect.Lists;
 import com.intellij.ide.projectView.PresentationData;
 import com.intellij.ide.util.treeView.AbstractTreeNode;
 import com.intellij.openapi.fileEditor.FileEditorManager;
@@ -13,21 +12,19 @@ import com.intellij.openapi.util.IconLoader;
 import com.intellij.ui.tree.StructureTreeModel;
 import org.jboss.tools.intellij.windup.editor.ConfigurationFile;
 import org.jboss.tools.intellij.windup.editor.server.VertxService;
-import org.jboss.tools.intellij.windup.model.WindupConfiguration;
-import org.jboss.tools.intellij.windup.model.WindupConfiguration.*;
+import org.jboss.tools.intellij.windup.model.KantraConfiguration;
 import org.jboss.tools.intellij.windup.services.ModelService;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.Collection;
-import java.util.List;
 
-public class ConfigurationNode extends WindupExplorerNode<WindupConfiguration> {
+public class ConfigurationNode extends KantraExplorerNode<KantraConfiguration> {
 
     private ModelService modelService;
     private VertxService vertxService;
     private StructureTreeModel treeModel;
 
-    public ConfigurationNode(WindupConfiguration configuration, ModelService modelService, VertxService vertxService, StructureTreeModel treeModel) {
+    public ConfigurationNode(KantraConfiguration configuration, ModelService modelService, VertxService vertxService, StructureTreeModel treeModel) {
         super(configuration, configuration.getSummary());
         this.modelService = modelService;
         this.vertxService = vertxService;
@@ -59,7 +56,7 @@ public class ConfigurationNode extends WindupExplorerNode<WindupConfiguration> {
         this.openConfigurationEditor(this.getValue(), modelService, vertxService);
     }
 
-    public static void openConfigurationEditor(WindupConfiguration configuration, ModelService modelService, VertxService vertxService) {
+    public static void openConfigurationEditor(KantraConfiguration configuration, ModelService modelService, VertxService vertxService) {
         ConfigurationNode.openConfigurationEditor(new ConfigurationFile(configuration, vertxService, modelService), modelService.getProject());
     }
 

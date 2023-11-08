@@ -8,16 +8,17 @@ import com.intellij.icons.AllIcons;
 import com.intellij.ide.projectView.PresentationData;
 import com.intellij.ide.util.treeView.AbstractTreeNode;
 import com.intellij.openapi.project.Project;
-import org.jboss.tools.intellij.windup.model.WindupConfiguration.*;
+import org.jboss.tools.intellij.windup.model.KantraConfiguration;
+import org.jboss.tools.intellij.windup.model.Ruleset;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.Collection;
 import java.util.List;
 
-public class HintNode extends IssueNode<Hint> {
+public class IncidentNode extends KantraExplorerNode<Ruleset.Incident> {
 
-    public HintNode(Hint hint) {
-        super(hint);
+    public IncidentNode(KantraConfiguration.AnalysisResultsSummary summary, Ruleset.Incident incident) {
+        super(incident, summary);
     }
 
     @NotNull
@@ -32,7 +33,7 @@ public class HintNode extends IssueNode<Hint> {
 
     @Override
     protected void update(PresentationData presentation) {
-        presentation.setPresentableText(super.getValue().title);
+        presentation.setPresentableText(super.getValue().get);
         Hint hint = this.getValue();
         if (hint.complete) {
             presentation.setIcon(AllIcons.Actions.Commit);
